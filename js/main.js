@@ -55,14 +55,16 @@ function validarFormulario(event) {
         'descripcion-regalo': errorDescripcionRegalo,
     };
 
+    borrarErroresMostrados();
     const esExito = manejarErrores(errores) === 0;
     if (esExito) {
         $form.className = "oculto";
         document.querySelector('#exito').className = "";
+        
+        setTimeout(function() {window.location.href = "wishlist.html"}, 5000);
     }
 
-
-    event.preventDefault();   
+    event.preventDefault();
 }
 
 function manejarErrores(errores) {
@@ -86,6 +88,13 @@ function manejarErrores(errores) {
     })
 
     return cantidadErrores;
+}
+
+function borrarErroresMostrados() {
+    const $errores = document.querySelector('#errores');
+    while ($errores.firstChild) {
+        $errores.removeChild($errores.firstChild);
+    }
 }
 
 const $form = document.querySelector("#carta-a-santa");
